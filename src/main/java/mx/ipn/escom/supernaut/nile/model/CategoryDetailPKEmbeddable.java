@@ -14,7 +14,8 @@ import javax.validation.constraints.NotNull;
  * @author supernaut
  */
 @Embeddable
-public class CategoryDetailPKEmbeddable implements Serializable, CategoryDetailPK {
+public class CategoryDetailPKEmbeddable extends CategoryDetailPK implements
+    Serializable {
 
   @Basic(optional = false)
   @NotNull
@@ -30,20 +31,22 @@ public class CategoryDetailPKEmbeddable implements Serializable, CategoryDetailP
     this.attribute = attribute;
   }
 
-    @Override
+  @Override
   public short getCategory() {
     return category;
   }
 
+  @Override
   public void setCategory(short category) {
     this.category = category;
   }
 
-    @Override
+  @Override
   public int getAttribute() {
     return attribute;
   }
 
+  @Override
   public void setAttribute(int attribute) {
     this.attribute = attribute;
   }

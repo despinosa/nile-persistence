@@ -14,7 +14,8 @@ import javax.validation.constraints.NotNull;
  * @author supernaut
  */
 @Embeddable
-public class OrderDetailPKEmbeddable implements Serializable, OrderDetailPK {
+public class OrderDetailPKEmbeddable extends OrderDetailPK implements
+    Serializable {
 
   @Basic(optional = false)
   @NotNull
@@ -39,6 +40,7 @@ public class OrderDetailPKEmbeddable implements Serializable, OrderDetailPK {
     return customer;
   }
 
+  @Override
   public void setCustomer(int customer) {
     this.customer = customer;
   }
@@ -48,6 +50,7 @@ public class OrderDetailPKEmbeddable implements Serializable, OrderDetailPK {
     return order;
   }
 
+  @Override
   public void setOrder(short order) {
     this.order = order;
   }
@@ -57,6 +60,7 @@ public class OrderDetailPKEmbeddable implements Serializable, OrderDetailPK {
     return product;
   }
 
+  @Override
   public void setProduct(int product) {
     this.product = product;
   }

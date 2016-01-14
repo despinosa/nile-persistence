@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
  * @author supernaut
  */
 @Embeddable
-public class AddressPKEmbeddable implements Serializable, AddressPK {
+public class AddressPKEmbeddable extends AddressPK implements Serializable {
 
   @Basic(optional = false)
   @NotNull
@@ -37,6 +37,7 @@ public class AddressPKEmbeddable implements Serializable, AddressPK {
     return customer;
   }
 
+  @Override
   public void setCustomer(int customer) {
     this.customer = customer;
   }
@@ -46,6 +47,7 @@ public class AddressPKEmbeddable implements Serializable, AddressPK {
     return type;
   }
 
+  @Override
   public void setType(String type) {
     this.type = type;
   }

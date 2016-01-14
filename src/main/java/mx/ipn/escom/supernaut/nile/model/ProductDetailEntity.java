@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
         query = "SELECT p FROM ProductDetailEntity p WHERE p.productDetailPK.attribute = :attribute"),
     @NamedQuery(name = "ProductDetailEntity.findByValue",
         query = "SELECT p FROM ProductDetailEntity p WHERE p.value = :value")})
-public class ProductDetailEntity implements Serializable, ProductDetail {
+public class ProductDetailEntity extends ProductDetail implements Serializable {
 
   private static final long serialVersionUID = 1L;
   @EmbeddedId

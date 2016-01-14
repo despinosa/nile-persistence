@@ -29,7 +29,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(
         name = "CategoryDetailEntity.findByAttribute",
         query = "SELECT c FROM CategoryDetailEntity c WHERE c.categoryDetailPK.attribute = :attribute")})
-public class CategoryDetailEntity implements Serializable, CategoryDetail {
+public class CategoryDetailEntity extends CategoryDetail implements
+    Serializable {
 
   private static final long serialVersionUID = 1L;
   @EmbeddedId
@@ -71,6 +72,7 @@ public class CategoryDetailEntity implements Serializable, CategoryDetail {
     return attribute1;
   }
 
+  @Override
   public void setAttribute1(Attribute attribute1) {
     this.attribute1 = attribute1;
   }
@@ -80,6 +82,7 @@ public class CategoryDetailEntity implements Serializable, CategoryDetail {
     return category1;
   }
 
+  @Override
   public void setCategory1(Category category1) {
     this.category1 = category1;
   }

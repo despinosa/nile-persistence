@@ -38,7 +38,7 @@ import javax.xml.bind.annotation.XmlRootElement;
         query = "SELECT a FROM AddressEntity a WHERE a.line2 = :line2"),
     @NamedQuery(name = "AddressEntity.findByPostcode",
         query = "SELECT a FROM AddressEntity a WHERE a.postcode = :postcode")})
-public class AddressEntity implements Serializable, Address {
+public class AddressEntity extends Address implements Serializable {
 
   private static final long serialVersionUID = 1L;
   @EmbeddedId

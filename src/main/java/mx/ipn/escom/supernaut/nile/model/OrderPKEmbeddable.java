@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
  * @author supernaut
  */
 @Embeddable
-public class OrderPKEmbeddable implements Serializable, OrderPK {
+public class OrderPKEmbeddable extends OrderPK implements Serializable {
 
   @Basic(optional = false)
   @NotNull
@@ -32,20 +32,22 @@ public class OrderPKEmbeddable implements Serializable, OrderPK {
     this.orderId = orderId;
   }
 
-    @Override
+  @Override
   public int getCustomer() {
     return customer;
   }
 
+  @Override
   public void setCustomer(int customer) {
     this.customer = customer;
   }
 
-    @Override
+  @Override
   public short getOrderId() {
     return orderId;
   }
 
+  @Override
   public void setOrderId(short orderId) {
     this.orderId = orderId;
   }

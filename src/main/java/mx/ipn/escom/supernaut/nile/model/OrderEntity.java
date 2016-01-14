@@ -53,7 +53,7 @@ import javax.xml.bind.annotation.XmlTransient;
         query = "SELECT o FROM OrderEntity o WHERE o.uniqueProducts = :uniqueProducts"),
     @NamedQuery(name = "OrderEntity.findByTotal",
         query = "SELECT o FROM OrderEntity o WHERE o.total = :total")})
-public class OrderEntity implements Serializable, Order {
+public class OrderEntity extends Order implements Serializable {
 
   private static final long serialVersionUID = 1L;
   @EmbeddedId

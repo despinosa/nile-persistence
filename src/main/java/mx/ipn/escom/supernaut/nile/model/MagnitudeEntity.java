@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(
         name = "MagnitudeEntity.findByDescription",
         query = "SELECT m FROM MagnitudeEntity m WHERE m.description = :description")})
-public class MagnitudeEntity implements Serializable, Magnitude {
+public class MagnitudeEntity extends Magnitude implements Serializable {
 
   private static final long serialVersionUID = 1L;
   @Id
@@ -70,6 +70,7 @@ public class MagnitudeEntity implements Serializable, Magnitude {
     return magniId;
   }
 
+  @Override
   public void setMagniId(Short magniId) {
     this.magniId = magniId;
   }
@@ -129,8 +130,7 @@ public class MagnitudeEntity implements Serializable, Magnitude {
       return false;
     }
     MagnitudeEntity other = (MagnitudeEntity) object;
-    if ((this.magniId == null && other.magniId != null)
-        || (this.magniId != null && !this.magniId.equals(other.magniId))) {
+    if (!this.magniId.equals(other.magniId)) {
       return false;
     }
     return true;

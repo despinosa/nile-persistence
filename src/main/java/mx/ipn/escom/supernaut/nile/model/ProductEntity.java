@@ -49,7 +49,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(
         name = "ProductEntity.findByDescription",
         query = "SELECT p FROM ProductEntity p WHERE p.description = :description")})
-public class ProductEntity implements Serializable, Product {
+public class ProductEntity extends Product implements Serializable {
 
   private static final long serialVersionUID = 1L;
   @Id
@@ -143,6 +143,7 @@ public class ProductEntity implements Serializable, Product {
     return addedOn;
   }
 
+  @Override
   public void setAddedOn(Date addedOn) {
     this.addedOn = addedOn;
   }

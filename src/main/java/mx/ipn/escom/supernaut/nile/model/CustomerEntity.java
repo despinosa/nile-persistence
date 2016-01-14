@@ -48,7 +48,7 @@ import javax.xml.bind.annotation.XmlTransient;
         query = "SELECT c FROM CustomerEntity c WHERE c.addedOn = :addedOn"),
     @NamedQuery(name = "CustomerEntity.findByLastLogin",
         query = "SELECT c FROM CustomerEntity c WHERE c.lastLogin = :lastLogin")})
-public class CustomerEntity implements Serializable, Customer {
+public class CustomerEntity extends Customer implements Serializable {
 
   private static final long serialVersionUID = 1L;
   @Id
@@ -119,6 +119,7 @@ public class CustomerEntity implements Serializable, Customer {
     return customerId;
   }
 
+  @Override
   public void setCustomerId(Integer customerId) {
     this.customerId = customerId;
   }
@@ -178,6 +179,7 @@ public class CustomerEntity implements Serializable, Customer {
     return addedOn;
   }
 
+  @Override
   public void setAddedOn(Date addedOn) {
     this.addedOn = addedOn;
   }

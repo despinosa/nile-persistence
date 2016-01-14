@@ -14,7 +14,8 @@ import javax.validation.constraints.NotNull;
  * @author supernaut
  */
 @Embeddable
-public class ProductDetailPKEmbeddable implements Serializable, ProductDetailPK {
+public class ProductDetailPKEmbeddable extends ProductDetailPK implements
+    Serializable {
 
   @Basic(optional = false)
   @NotNull
@@ -35,6 +36,7 @@ public class ProductDetailPKEmbeddable implements Serializable, ProductDetailPK 
     return product;
   }
 
+  @Override
   public void setProduct(int product) {
     this.product = product;
   }
@@ -44,6 +46,7 @@ public class ProductDetailPKEmbeddable implements Serializable, ProductDetailPK 
     return attribute;
   }
 
+  @Override
   public void setAttribute(int attribute) {
     this.attribute = attribute;
   }

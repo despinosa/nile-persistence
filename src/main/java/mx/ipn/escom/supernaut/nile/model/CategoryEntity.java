@@ -41,7 +41,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(
         name = "CategoryEntity.findByDescription",
         query = "SELECT c FROM CategoryEntity c WHERE c.description = :description")})
-public class CategoryEntity implements Serializable, Category {
+public class CategoryEntity extends Category implements Serializable {
 
   private static final long serialVersionUID = 1L;
   @Id
@@ -80,6 +80,7 @@ public class CategoryEntity implements Serializable, Category {
     return categoryId;
   }
 
+  @Override
   public void setCategoryId(Short categoryId) {
     this.categoryId = categoryId;
   }

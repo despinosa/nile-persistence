@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(
         name = "OrderDetailEntity.findByQuantity",
         query = "SELECT o FROM OrderDetailEntity o WHERE o.quantity = :quantity")})
-public class OrderDetailEntity implements Serializable, OrderDetail {
+public class OrderDetailEntity extends OrderDetail implements Serializable {
 
   private static final long serialVersionUID = 1L;
   @EmbeddedId

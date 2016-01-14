@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
  * @author supernaut
  */
 @Embeddable
-public class UnitPKEmbeddable implements Serializable, UnitPK {
+public class UnitPKEmbeddable extends UnitPK implements Serializable {
 
   @Basic(optional = false)
   @NotNull
@@ -37,6 +37,7 @@ public class UnitPKEmbeddable implements Serializable, UnitPK {
     return magni;
   }
 
+  @Override
   public void setMagni(short magni) {
     this.magni = magni;
   }
@@ -46,6 +47,7 @@ public class UnitPKEmbeddable implements Serializable, UnitPK {
     return unitId;
   }
 
+  @Override
   public void setUnitId(short unitId) {
     this.unitId = unitId;
   }

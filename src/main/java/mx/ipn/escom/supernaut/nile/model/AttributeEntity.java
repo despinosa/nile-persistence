@@ -40,7 +40,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(
         name = "AttributeEntity.findByDescription",
         query = "SELECT a FROM AttributeEntity a WHERE a.description = :description")})
-public class AttributeEntity implements Serializable, Attribute {
+public class AttributeEntity extends Attribute implements Serializable {
 
   private static final long serialVersionUID = 1L;
   @Id
@@ -78,6 +78,7 @@ public class AttributeEntity implements Serializable, Attribute {
     return attributeId;
   }
 
+  @Override
   public void setAttributeId(Integer attributeId) {
     this.attributeId = attributeId;
   }

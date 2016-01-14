@@ -43,7 +43,7 @@ import javax.xml.bind.annotation.XmlTransient;
         query = "SELECT u FROM UnitEntity u WHERE u.shownAsPrefix = :shownAsPrefix"),
     @NamedQuery(name = "UnitEntity.findByDescription",
         query = "SELECT u FROM UnitEntity u WHERE u.description = :description")})
-public class UnitEntity implements Serializable, Unit {
+public class UnitEntity extends Unit implements Serializable {
 
   private static final long serialVersionUID = 1L;
   @EmbeddedId
