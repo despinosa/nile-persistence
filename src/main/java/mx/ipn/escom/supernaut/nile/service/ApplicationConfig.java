@@ -35,9 +35,9 @@ public class ApplicationConfig extends Application {
     resources.add(mx.ipn.escom.supernaut.nile.service.CustomerFacadeREST.class);
     resources
         .add(mx.ipn.escom.supernaut.nile.service.MagnitudeFacadeREST.class);
-    resources.add(mx.ipn.escom.supernaut.nile.service.Order1FacadeREST.class);
     resources
         .add(mx.ipn.escom.supernaut.nile.service.OrderDetailFacadeREST.class);
+    resources.add(mx.ipn.escom.supernaut.nile.service.OrderFacadeREST.class);
     resources
         .add(mx.ipn.escom.supernaut.nile.service.ProductDetailFacadeREST.class);
     resources.add(mx.ipn.escom.supernaut.nile.service.ProductFacadeREST.class);

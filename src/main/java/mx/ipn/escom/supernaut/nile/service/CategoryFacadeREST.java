@@ -17,7 +17,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import mx.ipn.escom.supernaut.nile.model.Category;
+import mx.ipn.escom.supernaut.nile.model.CategoryEntity;
 
 /**
  *
@@ -25,26 +25,26 @@ import mx.ipn.escom.supernaut.nile.model.Category;
  */
 @Stateless
 @Path("mx.ipn.escom.supernaut.nile.model.category")
-public class CategoryFacadeREST extends AbstractFacade<Category> {
+public class CategoryFacadeREST extends AbstractFacade<CategoryEntity> {
 
     @PersistenceContext(unitName = "mx.ipn.escom.supernaut_nile-persistence_war_0.1PU")
     private EntityManager em;
 
     public CategoryFacadeREST() {
-        super(Category.class);
+        super(CategoryEntity.class);
     }
 
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(Category entity) {
+    public void create(CategoryEntity entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Short id, Category entity) {
+    public void edit(@PathParam("id") Short id, CategoryEntity entity) {
         super.edit(entity);
     }
 
@@ -57,21 +57,21 @@ public class CategoryFacadeREST extends AbstractFacade<Category> {
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Category find(@PathParam("id") Short id) {
+    public CategoryEntity find(@PathParam("id") Short id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Category> findAll() {
+    public List<CategoryEntity> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Category> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<CategoryEntity> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 

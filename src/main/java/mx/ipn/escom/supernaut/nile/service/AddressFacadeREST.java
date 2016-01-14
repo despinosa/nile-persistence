@@ -18,8 +18,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.PathSegment;
-import mx.ipn.escom.supernaut.nile.model.Address;
-import mx.ipn.escom.supernaut.nile.model.AddressPK;
+import mx.ipn.escom.supernaut.nile.model.AddressEntity;
+import mx.ipn.escom.supernaut.nile.model.AddressPKEmbeddable;
 
 /**
  *
@@ -27,12 +27,12 @@ import mx.ipn.escom.supernaut.nile.model.AddressPK;
  */
 @Stateless
 @Path("mx.ipn.escom.supernaut.nile.model.address")
-public class AddressFacadeREST extends AbstractFacade<Address> {
+public class AddressFacadeREST extends AbstractFacade<AddressEntity> {
 
     @PersistenceContext(unitName = "mx.ipn.escom.supernaut_nile-persistence_war_0.1PU")
     private EntityManager em;
 
-    private AddressPK getPrimaryKey(PathSegment pathSegment) {
+    private AddressPKEmbeddable getPrimaryKey(PathSegment pathSegment) {
         /*
          * pathSemgent represents a URI path segment and any associated matrix parameters.
          * URI path part is supposed to be in form of 'somePath;customer=customerValue;type=typeValue'.
@@ -40,7 +40,7 @@ public class AddressFacadeREST extends AbstractFacade<Address> {
          * it is ignored in the following code.
          * Matrix parameters are used as field names to build a primary key instance.
          */
-        mx.ipn.escom.supernaut.nile.model.AddressPK key = new mx.ipn.escom.supernaut.nile.model.AddressPK();
+        mx.ipn.escom.supernaut.nile.model.AddressPKEmbeddable key = new mx.ipn.escom.supernaut.nile.model.AddressPKEmbeddable();
         javax.ws.rs.core.MultivaluedMap<String, String> map = pathSegment.getMatrixParameters();
         java.util.List<String> customer = map.get("customer");
         if (customer != null && !customer.isEmpty()) {
@@ -54,49 +54,49 @@ public class AddressFacadeREST extends AbstractFacade<Address> {
     }
 
     public AddressFacadeREST() {
-        super(Address.class);
+        super(AddressEntity.class);
     }
 
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(Address entity) {
+    public void create(AddressEntity entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") PathSegment id, Address entity) {
+    public void edit(@PathParam("id") PathSegment id, AddressEntity entity) {
         super.edit(entity);
     }
 
     @DELETE
     @Path("{id}")
     public void remove(@PathParam("id") PathSegment id) {
-        mx.ipn.escom.supernaut.nile.model.AddressPK key = getPrimaryKey(id);
+        mx.ipn.escom.supernaut.nile.model.AddressPKEmbeddable key = getPrimaryKey(id);
         super.remove(super.find(key));
     }
 
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Address find(@PathParam("id") PathSegment id) {
-        mx.ipn.escom.supernaut.nile.model.AddressPK key = getPrimaryKey(id);
+    public AddressEntity find(@PathParam("id") PathSegment id) {
+        mx.ipn.escom.supernaut.nile.model.AddressPKEmbeddable key = getPrimaryKey(id);
         return super.find(key);
     }
 
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Address> findAll() {
+    public List<AddressEntity> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Address> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<AddressEntity> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 

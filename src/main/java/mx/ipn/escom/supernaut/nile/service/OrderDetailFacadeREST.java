@@ -18,8 +18,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.PathSegment;
-import mx.ipn.escom.supernaut.nile.model.OrderDetail;
-import mx.ipn.escom.supernaut.nile.model.OrderDetailPK;
+import mx.ipn.escom.supernaut.nile.model.OrderDetailEntity;
+import mx.ipn.escom.supernaut.nile.model.OrderDetailPKEmbeddable;
 
 /**
  *
@@ -27,12 +27,12 @@ import mx.ipn.escom.supernaut.nile.model.OrderDetailPK;
  */
 @Stateless
 @Path("mx.ipn.escom.supernaut.nile.model.orderdetail")
-public class OrderDetailFacadeREST extends AbstractFacade<OrderDetail> {
+public class OrderDetailFacadeREST extends AbstractFacade<OrderDetailEntity> {
 
     @PersistenceContext(unitName = "mx.ipn.escom.supernaut_nile-persistence_war_0.1PU")
     private EntityManager em;
 
-    private OrderDetailPK getPrimaryKey(PathSegment pathSegment) {
+    private OrderDetailPKEmbeddable getPrimaryKey(PathSegment pathSegment) {
         /*
          * pathSemgent represents a URI path segment and any associated matrix parameters.
          * URI path part is supposed to be in form of 'somePath;customer=customerValue;order=orderValue;product=productValue'.
@@ -40,7 +40,7 @@ public class OrderDetailFacadeREST extends AbstractFacade<OrderDetail> {
          * it is ignored in the following code.
          * Matrix parameters are used as field names to build a primary key instance.
          */
-        mx.ipn.escom.supernaut.nile.model.OrderDetailPK key = new mx.ipn.escom.supernaut.nile.model.OrderDetailPK();
+        mx.ipn.escom.supernaut.nile.model.OrderDetailPKEmbeddable key = new mx.ipn.escom.supernaut.nile.model.OrderDetailPKEmbeddable();
         javax.ws.rs.core.MultivaluedMap<String, String> map = pathSegment.getMatrixParameters();
         java.util.List<String> customer = map.get("customer");
         if (customer != null && !customer.isEmpty()) {
@@ -58,49 +58,49 @@ public class OrderDetailFacadeREST extends AbstractFacade<OrderDetail> {
     }
 
     public OrderDetailFacadeREST() {
-        super(OrderDetail.class);
+        super(OrderDetailEntity.class);
     }
 
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(OrderDetail entity) {
+    public void create(OrderDetailEntity entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") PathSegment id, OrderDetail entity) {
+    public void edit(@PathParam("id") PathSegment id, OrderDetailEntity entity) {
         super.edit(entity);
     }
 
     @DELETE
     @Path("{id}")
     public void remove(@PathParam("id") PathSegment id) {
-        mx.ipn.escom.supernaut.nile.model.OrderDetailPK key = getPrimaryKey(id);
+        mx.ipn.escom.supernaut.nile.model.OrderDetailPKEmbeddable key = getPrimaryKey(id);
         super.remove(super.find(key));
     }
 
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public OrderDetail find(@PathParam("id") PathSegment id) {
-        mx.ipn.escom.supernaut.nile.model.OrderDetailPK key = getPrimaryKey(id);
+    public OrderDetailEntity find(@PathParam("id") PathSegment id) {
+        mx.ipn.escom.supernaut.nile.model.OrderDetailPKEmbeddable key = getPrimaryKey(id);
         return super.find(key);
     }
 
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<OrderDetail> findAll() {
+    public List<OrderDetailEntity> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<OrderDetail> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<OrderDetailEntity> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 

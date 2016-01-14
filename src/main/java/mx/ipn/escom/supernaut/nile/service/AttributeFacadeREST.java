@@ -17,7 +17,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import mx.ipn.escom.supernaut.nile.model.Attribute;
+import mx.ipn.escom.supernaut.nile.model.AttributeEntity;
 
 /**
  *
@@ -25,26 +25,26 @@ import mx.ipn.escom.supernaut.nile.model.Attribute;
  */
 @Stateless
 @Path("mx.ipn.escom.supernaut.nile.model.attribute")
-public class AttributeFacadeREST extends AbstractFacade<Attribute> {
+public class AttributeFacadeREST extends AbstractFacade<AttributeEntity> {
 
     @PersistenceContext(unitName = "mx.ipn.escom.supernaut_nile-persistence_war_0.1PU")
     private EntityManager em;
 
     public AttributeFacadeREST() {
-        super(Attribute.class);
+        super(AttributeEntity.class);
     }
 
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(Attribute entity) {
+    public void create(AttributeEntity entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Integer id, Attribute entity) {
+    public void edit(@PathParam("id") Integer id, AttributeEntity entity) {
         super.edit(entity);
     }
 
@@ -57,21 +57,21 @@ public class AttributeFacadeREST extends AbstractFacade<Attribute> {
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Attribute find(@PathParam("id") Integer id) {
+    public AttributeEntity find(@PathParam("id") Integer id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Attribute> findAll() {
+    public List<AttributeEntity> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Attribute> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<AttributeEntity> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 

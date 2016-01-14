@@ -23,25 +23,26 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Address.findAll", query = "SELECT a FROM Address a"),
+    @NamedQuery(name = "AddressEntity.findAll",
+        query = "SELECT a FROM AddressEntity a"),
     @NamedQuery(
-        name = "Address.findByCustomer",
-        query = "SELECT a FROM Address a WHERE a.addressPK.customer = :customer"),
-    @NamedQuery(name = "Address.findByType",
-        query = "SELECT a FROM Address a WHERE a.addressPK.type = :type"),
-    @NamedQuery(name = "Address.findByState",
-        query = "SELECT a FROM Address a WHERE a.state = :state"),
-    @NamedQuery(name = "Address.findByLine1",
-        query = "SELECT a FROM Address a WHERE a.line1 = :line1"),
-    @NamedQuery(name = "Address.findByLine2",
-        query = "SELECT a FROM Address a WHERE a.line2 = :line2"),
-    @NamedQuery(name = "Address.findByPostcode",
-        query = "SELECT a FROM Address a WHERE a.postcode = :postcode")})
-public class Address implements Serializable {
+        name = "AddressEntity.findByCustomer",
+        query = "SELECT a FROM AddressEntity a WHERE a.addressPK.customer = :customer"),
+    @NamedQuery(name = "AddressEntity.findByType",
+        query = "SELECT a FROM AddressEntity a WHERE a.addressPK.type = :type"),
+    @NamedQuery(name = "AddressEntity.findByState",
+        query = "SELECT a FROM AddressEntity a WHERE a.state = :state"),
+    @NamedQuery(name = "AddressEntity.findByLine1",
+        query = "SELECT a FROM AddressEntity a WHERE a.line1 = :line1"),
+    @NamedQuery(name = "AddressEntity.findByLine2",
+        query = "SELECT a FROM AddressEntity a WHERE a.line2 = :line2"),
+    @NamedQuery(name = "AddressEntity.findByPostcode",
+        query = "SELECT a FROM AddressEntity a WHERE a.postcode = :postcode")})
+public class AddressEntity implements Serializable, Address {
 
   private static final long serialVersionUID = 1L;
   @EmbeddedId
-  protected AddressPK addressPK;
+  protected AddressPKEmbeddable addressPK;
   @Basic(optional = false)
   @NotNull
   @Size(min = 1, max = 19)
@@ -56,69 +57,79 @@ public class Address implements Serializable {
   @JoinColumn(name = "customer", referencedColumnName = "customer_id",
       insertable = false, updatable = false)
   @ManyToOne(optional = false)
-  private Customer customer1;
+  private CustomerEntity customer1;
 
-  public Address() {}
+  public AddressEntity() {}
 
-  public Address(AddressPK addressPK) {
+  public AddressEntity(AddressPKEmbeddable addressPK) {
     this.addressPK = addressPK;
   }
 
-  public Address(AddressPK addressPK, String state, String line1) {
+  public AddressEntity(AddressPKEmbeddable addressPK, String state, String line1) {
     this.addressPK = addressPK;
     this.state = state;
     this.line1 = line1;
   }
 
-  public Address(int customer, String type) {
-    this.addressPK = new AddressPK(customer, type);
+  public AddressEntity(int customer, String type) {
+    this.addressPK = new AddressPKEmbeddable(customer, type);
   }
 
-  public AddressPK getAddressPK() {
+  @Override
+  public AddressPKEmbeddable getAddressPK() {
     return addressPK;
   }
 
-  public void setAddressPK(AddressPK addressPK) {
+  public void setAddressPK(AddressPKEmbeddable addressPK) {
     this.addressPK = addressPK;
   }
 
+  @Override
   public String getState() {
     return state;
   }
 
+  @Override
   public void setState(String state) {
     this.state = state;
   }
 
+  @Override
   public String getLine1() {
     return line1;
   }
 
+  @Override
   public void setLine1(String line1) {
     this.line1 = line1;
   }
 
+  @Override
   public String getLine2() {
     return line2;
   }
 
+  @Override
   public void setLine2(String line2) {
     this.line2 = line2;
   }
 
+  @Override
   public Integer getPostcode() {
     return postcode;
   }
 
+  @Override
   public void setPostcode(Integer postcode) {
     this.postcode = postcode;
   }
 
-  public Customer getCustomer1() {
+  @Override
+  public CustomerEntity getCustomer1() {
     return customer1;
   }
 
-  public void setCustomer1(Customer customer1) {
+  public void setCustomer1(CustomerEntity customer1) {
     this.customer1 = customer1;
   }
 
@@ -132,10 +143,10 @@ public class Address implements Serializable {
   @Override
   public boolean equals(Object object) {
     // TODO: Warning - this method won't work in the case the id fields are not set
-    if (!(object instanceof Address)) {
+    if (!(object instanceof AddressEntity)) {
       return false;
     }
-    Address other = (Address) object;
+    AddressEntity other = (AddressEntity) object;
     if ((this.addressPK == null && other.addressPK != null)
         || (this.addressPK != null && !this.addressPK.equals(other.addressPK))) {
       return false;
@@ -145,8 +156,8 @@ public class Address implements Serializable {
 
   @Override
   public String toString() {
-    return "mx.ipn.escom.supernaut.nile.model.Address[ addressPK=" + addressPK
-        + " ]";
+    return "mx.ipn.escom.supernaut.nile.model.AddressEntity[ addressPK="
+        + addressPK + " ]";
   }
 
 }

@@ -18,8 +18,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.PathSegment;
-import mx.ipn.escom.supernaut.nile.model.CategoryDetail;
-import mx.ipn.escom.supernaut.nile.model.CategoryDetailPK;
+import mx.ipn.escom.supernaut.nile.model.CategoryDetailEntity;
+import mx.ipn.escom.supernaut.nile.model.CategoryDetailPKEmbeddable;
 
 /**
  *
@@ -27,12 +27,12 @@ import mx.ipn.escom.supernaut.nile.model.CategoryDetailPK;
  */
 @Stateless
 @Path("mx.ipn.escom.supernaut.nile.model.categorydetail")
-public class CategoryDetailFacadeREST extends AbstractFacade<CategoryDetail> {
+public class CategoryDetailFacadeREST extends AbstractFacade<CategoryDetailEntity> {
 
     @PersistenceContext(unitName = "mx.ipn.escom.supernaut_nile-persistence_war_0.1PU")
     private EntityManager em;
 
-    private CategoryDetailPK getPrimaryKey(PathSegment pathSegment) {
+    private CategoryDetailPKEmbeddable getPrimaryKey(PathSegment pathSegment) {
         /*
          * pathSemgent represents a URI path segment and any associated matrix parameters.
          * URI path part is supposed to be in form of 'somePath;category=categoryValue;attribute=attributeValue'.
@@ -40,7 +40,7 @@ public class CategoryDetailFacadeREST extends AbstractFacade<CategoryDetail> {
          * it is ignored in the following code.
          * Matrix parameters are used as field names to build a primary key instance.
          */
-        mx.ipn.escom.supernaut.nile.model.CategoryDetailPK key = new mx.ipn.escom.supernaut.nile.model.CategoryDetailPK();
+        mx.ipn.escom.supernaut.nile.model.CategoryDetailPKEmbeddable key = new mx.ipn.escom.supernaut.nile.model.CategoryDetailPKEmbeddable();
         javax.ws.rs.core.MultivaluedMap<String, String> map = pathSegment.getMatrixParameters();
         java.util.List<String> category = map.get("category");
         if (category != null && !category.isEmpty()) {
@@ -54,49 +54,49 @@ public class CategoryDetailFacadeREST extends AbstractFacade<CategoryDetail> {
     }
 
     public CategoryDetailFacadeREST() {
-        super(CategoryDetail.class);
+        super(CategoryDetailEntity.class);
     }
 
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(CategoryDetail entity) {
+    public void create(CategoryDetailEntity entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") PathSegment id, CategoryDetail entity) {
+    public void edit(@PathParam("id") PathSegment id, CategoryDetailEntity entity) {
         super.edit(entity);
     }
 
     @DELETE
     @Path("{id}")
     public void remove(@PathParam("id") PathSegment id) {
-        mx.ipn.escom.supernaut.nile.model.CategoryDetailPK key = getPrimaryKey(id);
+        mx.ipn.escom.supernaut.nile.model.CategoryDetailPKEmbeddable key = getPrimaryKey(id);
         super.remove(super.find(key));
     }
 
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public CategoryDetail find(@PathParam("id") PathSegment id) {
-        mx.ipn.escom.supernaut.nile.model.CategoryDetailPK key = getPrimaryKey(id);
+    public CategoryDetailEntity find(@PathParam("id") PathSegment id) {
+        mx.ipn.escom.supernaut.nile.model.CategoryDetailPKEmbeddable key = getPrimaryKey(id);
         return super.find(key);
     }
 
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<CategoryDetail> findAll() {
+    public List<CategoryDetailEntity> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<CategoryDetail> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<CategoryDetailEntity> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 
