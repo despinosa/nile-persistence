@@ -13,6 +13,7 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -21,6 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author supernaut
  */
 @Entity
+@Table(name = "OrderDetail")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "OrderDetailEntity.findAll",
@@ -52,7 +54,7 @@ public class OrderDetailEntity extends OrderDetail implements Serializable {
   @JoinColumns({
       @JoinColumn(name = "customer", referencedColumnName = "customer",
           insertable = false, updatable = false),
-      @JoinColumn(name = "order", referencedColumnName = "order_id",
+      @JoinColumn(name = "`order`", referencedColumnName = "order_id",
           insertable = false, updatable = false)})
   @ManyToOne(optional = false)
   private OrderEntity order1;

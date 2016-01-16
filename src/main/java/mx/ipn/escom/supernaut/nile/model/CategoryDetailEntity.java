@@ -12,6 +12,7 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -19,6 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author supernaut
  */
 @Entity
+@Table(name = "CategoryDetail")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "CategoryDetailEntity.findAll",
@@ -38,15 +40,15 @@ public class CategoryDetailEntity extends CategoryDetail implements
   @JoinColumn(name = "attribute", referencedColumnName = "attribute_id",
       insertable = false, updatable = false)
   @ManyToOne(optional = false)
-  private Attribute attribute1;
+  private AttributeEntity attribute1;
   @JoinColumn(name = "category", referencedColumnName = "category_id",
       insertable = false, updatable = false)
   @ManyToOne(optional = false)
-  private Category category1;
+  private CategoryEntity category1;
   @JoinColumns({@JoinColumn(name = "magni", referencedColumnName = "magni"),
       @JoinColumn(name = "unit", referencedColumnName = "unit_id")})
   @ManyToOne
-  private Unit unit;
+  private UnitEntity unit;
 
   public CategoryDetailEntity() {}
 
@@ -68,32 +70,29 @@ public class CategoryDetailEntity extends CategoryDetail implements
   }
 
   @Override
-  public Attribute getAttribute1() {
+  public AttributeEntity getAttribute1() {
     return attribute1;
   }
 
-  @Override
-  public void setAttribute1(Attribute attribute1) {
+  public void setAttribute1(AttributeEntity attribute1) {
     this.attribute1 = attribute1;
   }
 
   @Override
-  public Category getCategory1() {
+  public CategoryEntity getCategory1() {
     return category1;
   }
 
-  @Override
-  public void setCategory1(Category category1) {
+  public void setCategory1(CategoryEntity category1) {
     this.category1 = category1;
   }
 
   @Override
-  public Unit getUnit() {
+  public UnitEntity getUnit() {
     return unit;
   }
 
-  @Override
-  public void setUnit(Unit unit) {
+  public void setUnit(UnitEntity unit) {
     this.unit = unit;
   }
 

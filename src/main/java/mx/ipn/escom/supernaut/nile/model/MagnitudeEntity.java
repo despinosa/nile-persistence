@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -24,6 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author supernaut
  */
 @Entity
+@Table(name = "Magnitude")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "MagnitudeEntity.findAll",
@@ -65,38 +67,31 @@ public class MagnitudeEntity extends Magnitude implements Serializable {
     this.name = name;
   }
 
-  @Override
   public Short getMagniId() {
     return magniId;
   }
 
-  @Override
   public void setMagniId(Short magniId) {
     this.magniId = magniId;
   }
 
-  @Override
   public String getName() {
     return name;
   }
 
-  @Override
   public void setName(String name) {
     this.name = name;
   }
 
-  @Override
   public String getDescription() {
     return description;
   }
 
-  @Override
   public void setDescription(String description) {
     this.description = description;
   }
 
   @XmlTransient
-  @Override
   public Collection<AttributeEntity> getAttributeCollection() {
     return attributeCollection;
   }
@@ -107,7 +102,6 @@ public class MagnitudeEntity extends Magnitude implements Serializable {
   }
 
   @XmlTransient
-  @Override
   public Collection<UnitEntity> getUnitCollection() {
     return unitCollection;
   }

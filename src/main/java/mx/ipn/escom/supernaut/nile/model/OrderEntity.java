@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author supernaut
  */
 @Entity
-@Table(name = "Order")
+@Table(name = "`Order`")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "OrderEntity.findAll",
@@ -79,7 +79,7 @@ public class OrderEntity extends Order implements Serializable {
       insertable = false, updatable = false)
   @ManyToOne(optional = false)
   private CustomerEntity customer1;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "order1")
   private Collection<OrderDetailEntity> orderDetailCollection;
 
   public OrderEntity() {}

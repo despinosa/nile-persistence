@@ -6,6 +6,7 @@ package mx.ipn.escom.supernaut.nile.model;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 
@@ -22,6 +23,7 @@ public class OrderDetailPKEmbeddable extends OrderDetailPK implements
   private int customer;
   @Basic(optional = false)
   @NotNull
+  @Column(name = "`order`")
   private short order;
   @Basic(optional = false)
   @NotNull

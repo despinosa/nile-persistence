@@ -20,6 +20,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -32,6 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author supernaut
  */
 @Entity
+@Table(name = "Product")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ProductEntity.findAll",
@@ -104,6 +106,7 @@ public class ProductEntity extends Product implements Serializable {
     return sku;
   }
 
+  @Override
   public void setSku(Integer sku) {
     this.sku = sku;
   }

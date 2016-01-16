@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -27,6 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author supernaut
  */
 @Entity
+@Table(name = "Customer")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "CustomerEntity.findAll",
@@ -205,7 +207,6 @@ public class CustomerEntity extends Customer implements Serializable {
   }
 
   @XmlTransient
-  @Override
   public Collection<AddressEntity> getAddressCollection() {
     return addressCollection;
   }
