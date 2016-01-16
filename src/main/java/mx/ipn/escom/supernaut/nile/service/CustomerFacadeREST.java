@@ -27,64 +27,75 @@ import mx.ipn.escom.supernaut.nile.model.CustomerEntity;
 @Path("mx.ipn.escom.supernaut.nile.model.customer")
 public class CustomerFacadeREST extends AbstractFacade<CustomerEntity> {
 
-    @PersistenceContext(unitName = "mx.ipn.escom.supernaut_nile-persistence_war_0.1PU")
-    private EntityManager em;
+  @PersistenceContext(
+      unitName = "mx.ipn.escom.supernaut_nile-persistence_war_0.1PU")
+  private EntityManager em;
 
-    public CustomerFacadeREST() {
-        super(CustomerEntity.class);
-    }
+  public CustomerFacadeREST() {
+    super(CustomerEntity.class);
+  }
 
-    @POST
-    @Override
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(CustomerEntity entity) {
-        super.create(entity);
-    }
+  @POST
+  @Override
+  @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+  public void create(CustomerEntity entity) {
+    super.create(entity);
+  }
 
-    @PUT
-    @Path("{id}")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Integer id, CustomerEntity entity) {
-        super.edit(entity);
-    }
+  @PUT
+  @Path("{id}")
+  @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+  public void edit(@PathParam("id") Integer id, CustomerEntity entity) {
+    super.edit(entity);
+  }
 
-    @DELETE
-    @Path("{id}")
-    public void remove(@PathParam("id") Integer id) {
-        super.remove(super.find(id));
-    }
+  @DELETE
+  @Path("{id}")
+  public void remove(@PathParam("id") Integer id) {
+    super.remove(super.find(id));
+  }
 
-    @GET
-    @Path("{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public CustomerEntity find(@PathParam("id") Integer id) {
-        return super.find(id);
-    }
+  @GET
+  @Path("{id}")
+  @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+  public CustomerEntity find(@PathParam("id") Integer id) {
+    return super.find(id);
+  }
 
-    @GET
-    @Override
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<CustomerEntity> findAll() {
-        return super.findAll();
-    }
+  @GET
+  @Path("user/{username}")
+  @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+  public CustomerEntity findByUsername(@PathParam("username") String username) {
+    return (CustomerEntity) getEntityManager()
+        .createNamedQuery("Customer.findByUsername")
+        .setParameter("username", username).getSingleResult();
+  }
 
-    @GET
-    @Path("{from}/{to}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<CustomerEntity> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
-        return super.findRange(new int[]{from, to});
-    }
+  @GET
+  @Override
+  @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+  public List<CustomerEntity> findAll() {
+    return super.findAll();
+  }
 
-    @GET
-    @Path("count")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String countREST() {
-        return String.valueOf(super.count());
-    }
+  @GET
+  @Path("{from}/{to}")
+  @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+  public List<CustomerEntity> findRange(@PathParam("from") Integer from,
+      @PathParam("to") Integer to) {
+    return super.findRange(new int[] {from, to});
+  }
 
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
+  @GET
+  @Path("count")
+  @Produces(MediaType.TEXT_PLAIN)
+  public String countREST() {
+    return String.valueOf(super.count());
+  }
+
+  @Override
+  protected EntityManager getEntityManager() {
+    return em;
+  }
 
 }
