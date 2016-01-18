@@ -116,7 +116,6 @@ public class AttributeEntity extends Attribute implements Serializable {
     this.productDetailCollection = productDetailCollection;
   }
 
-  @Override
   public MagnitudeEntity getMagni() {
     return magni;
   }

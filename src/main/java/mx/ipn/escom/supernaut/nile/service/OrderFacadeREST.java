@@ -61,14 +61,16 @@ public class OrderFacadeREST extends AbstractFacade<OrderEntity> {
 
   @POST
   @Override
-  @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+  @Consumes({MediaType.APPLICATION_XML + "; charset=UTF-8",
+      MediaType.APPLICATION_JSON + "; charset=UTF-8"})
   public void create(OrderEntity entity) {
     super.create(entity);
   }
 
   @PUT
   @Path("{id}")
-  @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+  @Consumes({MediaType.APPLICATION_XML + "; charset=UTF-8",
+      MediaType.APPLICATION_JSON + "; charset=UTF-8"})
   public void edit(@PathParam("id") PathSegment id, OrderEntity entity) {
     super.edit(entity);
   }
@@ -82,7 +84,8 @@ public class OrderFacadeREST extends AbstractFacade<OrderEntity> {
 
   @GET
   @Path("{id}")
-  @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+  @Produces({MediaType.APPLICATION_XML + "; charset=UTF-8",
+      MediaType.APPLICATION_JSON + "; charset=UTF-8"})
   public OrderEntity find(@PathParam("id") PathSegment id) {
     mx.ipn.escom.supernaut.nile.model.OrderPKEmbeddable key = getPrimaryKey(id);
     return super.find(key);
@@ -90,14 +93,16 @@ public class OrderFacadeREST extends AbstractFacade<OrderEntity> {
 
   @GET
   @Override
-  @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+  @Produces({MediaType.APPLICATION_XML + "; charset=UTF-8",
+      MediaType.APPLICATION_JSON + "; charset=UTF-8"})
   public List<OrderEntity> findAll() {
     return super.findAll();
   }
 
   @GET
   @Path("{from}/{to}")
-  @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+  @Produces({MediaType.APPLICATION_XML + "; charset=UTF-8",
+      MediaType.APPLICATION_JSON + "; charset=UTF-8"})
   public List<OrderEntity> findRange(@PathParam("from") Integer from,
       @PathParam("to") Integer to) {
     return super.findRange(new int[] {from, to});

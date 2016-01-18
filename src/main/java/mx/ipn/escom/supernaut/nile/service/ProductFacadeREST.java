@@ -27,64 +27,71 @@ import mx.ipn.escom.supernaut.nile.model.ProductEntity;
 @Path("mx.ipn.escom.supernaut.nile.model.product")
 public class ProductFacadeREST extends AbstractFacade<ProductEntity> {
 
-    @PersistenceContext(unitName = "mx.ipn.escom.supernaut_nile-persistence_war_0.1PU")
-    private EntityManager em;
+  @PersistenceContext(
+      unitName = "mx.ipn.escom.supernaut_nile-persistence_war_0.1PU")
+  private EntityManager em;
 
-    public ProductFacadeREST() {
-        super(ProductEntity.class);
-    }
+  public ProductFacadeREST() {
+    super(ProductEntity.class);
+  }
 
-    @POST
-    @Override
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(ProductEntity entity) {
-        super.create(entity);
-    }
+  @POST
+  @Override
+  @Consumes({MediaType.APPLICATION_XML + "; charset=UTF-8",
+      MediaType.APPLICATION_JSON + "; charset=UTF-8"})
+  public void create(ProductEntity entity) {
+    super.create(entity);
+  }
 
-    @PUT
-    @Path("{id}")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Integer id, ProductEntity entity) {
-        super.edit(entity);
-    }
+  @PUT
+  @Path("{id}")
+  @Consumes({MediaType.APPLICATION_XML + "; charset=UTF-8",
+      MediaType.APPLICATION_JSON + "; charset=UTF-8"})
+  public void edit(@PathParam("id") Integer id, ProductEntity entity) {
+    super.edit(entity);
+  }
 
-    @DELETE
-    @Path("{id}")
-    public void remove(@PathParam("id") Integer id) {
-        super.remove(super.find(id));
-    }
+  @DELETE
+  @Path("{id}")
+  public void remove(@PathParam("id") Integer id) {
+    super.remove(super.find(id));
+  }
 
-    @GET
-    @Path("{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public ProductEntity find(@PathParam("id") Integer id) {
-        return super.find(id);
-    }
+  @GET
+  @Path("{id}")
+  @Produces({MediaType.APPLICATION_XML + "; charset=UTF-8",
+      MediaType.APPLICATION_JSON + "; charset=UTF-8"})
+  public ProductEntity find(@PathParam("id") Integer id) {
+    return super.find(id);
+  }
 
-    @GET
-    @Override
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<ProductEntity> findAll() {
-        return super.findAll();
-    }
+  @GET
+  @Override
+  @Produces({MediaType.APPLICATION_XML + "; charset=UTF-8",
+      MediaType.APPLICATION_JSON + "; charset=UTF-8"})
+  public List<ProductEntity> findAll() {
+    return super.findAll();
+  }
 
-    @GET
-    @Path("{from}/{to}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<ProductEntity> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
-        return super.findRange(new int[]{from, to});
-    }
+  @GET
+  @Path("{from}/{to}")
+  @Produces({MediaType.APPLICATION_XML + "; charset=UTF-8",
+      MediaType.APPLICATION_JSON + "; charset=UTF-8"})
+  public List<ProductEntity> findRange(@PathParam("from") Integer from,
+      @PathParam("to") Integer to) {
+    return super.findRange(new int[] {from, to});
+  }
 
-    @GET
-    @Path("count")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String countREST() {
-        return String.valueOf(super.count());
-    }
+  @GET
+  @Path("count")
+  @Produces(MediaType.TEXT_PLAIN)
+  public String countREST() {
+    return String.valueOf(super.count());
+  }
 
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
+  @Override
+  protected EntityManager getEntityManager() {
+    return em;
+  }
 
 }

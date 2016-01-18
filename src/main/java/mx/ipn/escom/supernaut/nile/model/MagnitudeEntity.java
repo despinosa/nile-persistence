@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(
         name = "MagnitudeEntity.findByDescription",
         query = "SELECT m FROM MagnitudeEntity m WHERE m.description = :description")})
-public class MagnitudeEntity extends Magnitude implements Serializable {
+public class MagnitudeEntity implements Serializable {
 
   private static final long serialVersionUID = 1L;
   @Id

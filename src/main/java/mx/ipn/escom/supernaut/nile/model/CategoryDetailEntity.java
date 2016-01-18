@@ -87,7 +87,6 @@ public class CategoryDetailEntity extends CategoryDetail implements
     this.category1 = category1;
   }
 
-  @Override
   public UnitEntity getUnit() {
     return unit;
   }

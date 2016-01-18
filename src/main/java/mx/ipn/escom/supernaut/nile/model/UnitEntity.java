@@ -45,7 +45,7 @@ import javax.xml.bind.annotation.XmlTransient;
         query = "SELECT u FROM UnitEntity u WHERE u.shownAsPrefix = :shownAsPrefix"),
     @NamedQuery(name = "UnitEntity.findByDescription",
         query = "SELECT u FROM UnitEntity u WHERE u.description = :description")})
-public class UnitEntity extends Unit implements Serializable {
+public class UnitEntity implements Serializable {
 
   private static final long serialVersionUID = 1L;
   @EmbeddedId
@@ -89,57 +89,47 @@ public class UnitEntity extends Unit implements Serializable {
     this.unitPK = new UnitPKEmbeddable(magni, unitId);
   }
 
-  @Override
-  public UnitPK getUnitPK() {
-    return (UnitPK) unitPK;
+  public UnitPKEmbeddable getUnitPK() {
+    return unitPK;
   }
 
   public void setUnitPK(UnitPKEmbeddable unitPK) {
     this.unitPK = unitPK;
   }
 
-  @Override
   public String getName() {
     return name;
   }
 
-  @Override
   public void setName(String name) {
     this.name = name;
   }
 
-  @Override
   public String getAbbreviation() {
     return abbreviation;
   }
 
-  @Override
   public void setAbbreviation(String abbreviation) {
     this.abbreviation = abbreviation;
   }
 
-  @Override
   public boolean getShownAsPrefix() {
     return shownAsPrefix;
   }
 
-  @Override
   public void setShownAsPrefix(boolean shownAsPrefix) {
     this.shownAsPrefix = shownAsPrefix;
   }
 
-  @Override
   public String getDescription() {
     return description;
   }
 
-  @Override
   public void setDescription(String description) {
     this.description = description;
   }
 
   @XmlTransient
-  @Override
   public Collection<CategoryDetailEntity> getCategoryDetailCollection() {
     return categoryDetailCollection;
   }
@@ -149,7 +139,6 @@ public class UnitEntity extends Unit implements Serializable {
     this.categoryDetailCollection = categoryDetailCollection;
   }
 
-  @Override
   public MagnitudeEntity getMagnitude() {
     return magnitude;
   }

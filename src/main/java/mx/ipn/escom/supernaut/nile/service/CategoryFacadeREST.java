@@ -27,64 +27,71 @@ import mx.ipn.escom.supernaut.nile.model.CategoryEntity;
 @Path("mx.ipn.escom.supernaut.nile.model.category")
 public class CategoryFacadeREST extends AbstractFacade<CategoryEntity> {
 
-    @PersistenceContext(unitName = "mx.ipn.escom.supernaut_nile-persistence_war_0.1PU")
-    private EntityManager em;
+  @PersistenceContext(
+      unitName = "mx.ipn.escom.supernaut_nile-persistence_war_0.1PU")
+  private EntityManager em;
 
-    public CategoryFacadeREST() {
-        super(CategoryEntity.class);
-    }
+  public CategoryFacadeREST() {
+    super(CategoryEntity.class);
+  }
 
-    @POST
-    @Override
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(CategoryEntity entity) {
-        super.create(entity);
-    }
+  @POST
+  @Override
+  @Consumes({MediaType.APPLICATION_XML + "; charset=UTF-8",
+      MediaType.APPLICATION_JSON + "; charset=UTF-8"})
+  public void create(CategoryEntity entity) {
+    super.create(entity);
+  }
 
-    @PUT
-    @Path("{id}")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Short id, CategoryEntity entity) {
-        super.edit(entity);
-    }
+  @PUT
+  @Path("{id}")
+  @Consumes({MediaType.APPLICATION_XML + "; charset=UTF-8",
+      MediaType.APPLICATION_JSON + "; charset=UTF-8"})
+  public void edit(@PathParam("id") Short id, CategoryEntity entity) {
+    super.edit(entity);
+  }
 
-    @DELETE
-    @Path("{id}")
-    public void remove(@PathParam("id") Short id) {
-        super.remove(super.find(id));
-    }
+  @DELETE
+  @Path("{id}")
+  public void remove(@PathParam("id") Short id) {
+    super.remove(super.find(id));
+  }
 
-    @GET
-    @Path("{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public CategoryEntity find(@PathParam("id") Short id) {
-        return super.find(id);
-    }
+  @GET
+  @Path("{id}")
+  @Produces({MediaType.APPLICATION_XML + "; charset=UTF-8",
+      MediaType.APPLICATION_JSON + "; charset=UTF-8"})
+  public CategoryEntity find(@PathParam("id") Short id) {
+    return super.find(id);
+  }
 
-    @GET
-    @Override
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<CategoryEntity> findAll() {
-        return super.findAll();
-    }
+  @GET
+  @Override
+  @Produces({MediaType.APPLICATION_XML + "; charset=UTF-8",
+      MediaType.APPLICATION_JSON + "; charset=UTF-8"})
+  public List<CategoryEntity> findAll() {
+    return super.findAll();
+  }
 
-    @GET
-    @Path("{from}/{to}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<CategoryEntity> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
-        return super.findRange(new int[]{from, to});
-    }
+  @GET
+  @Path("{from}/{to}")
+  @Produces({MediaType.APPLICATION_XML + "; charset=UTF-8",
+      MediaType.APPLICATION_JSON + "; charset=UTF-8"})
+  public List<CategoryEntity> findRange(@PathParam("from") Integer from,
+      @PathParam("to") Integer to) {
+    return super.findRange(new int[] {from, to});
+  }
 
-    @GET
-    @Path("count")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String countREST() {
-        return String.valueOf(super.count());
-    }
+  @GET
+  @Path("count")
+  @Produces(MediaType.TEXT_PLAIN)
+  public String countREST() {
+    return String.valueOf(super.count());
+  }
 
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
+  @Override
+  protected EntityManager getEntityManager() {
+    return em;
+  }
 
 }
